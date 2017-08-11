@@ -110,7 +110,8 @@
   }
 </script>
 <style scoped lang="scss">
-  .aa{
+  .aa {
     padding-top: 20px;
+  }
 </style>
 

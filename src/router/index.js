@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import test from '@/components/test'
 import test2 from '@/components/test2'
 import login from '@/views/login'
+import left from '@/views/left'
 
 Vue.use(Router)
 const routes= [
@@ -20,11 +21,14 @@ const routes= [
     path: '/test2',
     name: 'test2',
     component: test2
-  }
-  ,{
+  },{
     path: '/login',
     name: 'login',
     component: login
+  },{
+    path: '/left',
+    name: 'left',
+    component: left
   }
 
 ]
