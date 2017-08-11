@@ -14,7 +14,7 @@ const state = {
 const mutations = {
   a(state){
     console.log(state.name)
-  },  
+  }, 
 
 }
 // Actions 即是定义提交触发更改信息的描述，常见的例子有从服务端获取数据，在数据获取完成后会调用store.commit()来调用更改 Store 中的状态。可以在组件中使用dispatch来发出 Actions。
