@@ -106,7 +106,9 @@
     }
   }
 </script>
+
 <style lang="scss">
+
   .aa {
     padding-top: 20px;
   }
