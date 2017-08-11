@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import test from '@/components/test'
 import test2 from '@/components/test2'
+import login from '@/views/login'
 
 Vue.use(Router)
 const routes= [
@@ -13,16 +14,21 @@ const routes= [
   },
   {
     path: '/test',
-    name: 'Hello',
+    name: 'test',
     component: test
   },{
     path: '/test2',
-    name: 'Hello',
+    name: 'test2',
     component: test2
+  }
+  ,{
+    path: '/login',
+    name: 'login',
+    component: login
   }
 
 ]
 
 export default new Router({
   routes
-})
+});
