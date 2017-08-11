@@ -3,13 +3,10 @@
     系统登录
     <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="80px" class="demo-ruleForm aa">
       <el-form-item label="用户名" prop="user">
-        <el-input type="text" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+        <el-input type="text" v-model="ruleForm2.user" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
         <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
@@ -22,7 +19,7 @@
 <script>
   export default {
     data() {
-      var checkAge = (rule, value, callback) => {
+      let checkAge = (rule, value, callback) => {
         if (!value) {
           return callback(new Error('年龄不能为空'));
         }
@@ -38,7 +35,7 @@
           }
         }, 1000);
       };
-      var validateUser = (rule, value, callback) => {
+      let validateUser = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入用户名'));
         } else {
@@ -49,7 +46,7 @@
         }
       };
 
-      var validatePass = (rule, value, callback) => {
+      let validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'));
         } else {
@@ -59,7 +56,7 @@
           callback();
         }
       };
-      var validatePass2 = (rule, value, callback) => {
+      let validatePass2 = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请再次输入密码'));
         } else if (value !== this.ruleForm2.pass) {
@@ -109,8 +106,9 @@
     }
   }
 </script>
-<style scoped lang="scss">
-  .aa{
+<style lang="scss">
+  .aa {
     padding-top: 20px;
+  }
 </style>
 
