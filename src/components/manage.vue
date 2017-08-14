@@ -1,7 +1,16 @@
 
 <template>
   <div>
-
+    manage
+    <a href="#/manage/a">m_1</a>
+    <a href="#/manage/b">m_2</a>
+    <a href="#/manage/3">m_3</a>
+    <a href="#/manage/4">m_3</a>
+    <a href="#/manage/5">m_4</a>
+    <a href="#/manage/6">m_5</a>
+    <a href="#/manage/7">m_6</a>
+    <a href="#/manage/8">m_7</a>
+    <!--<router-view></router-view>-->
   </div>
 </template>
 
