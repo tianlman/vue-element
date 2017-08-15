@@ -1,8 +1,6 @@
 <template>
   <div>
-    <my-component></my-component>
-    <!--<test></test>-->
-    <!--<p>hello</p>-->
+    <!--<my-component></my-component>-->
   </div>
 </template>
 
@@ -16,7 +14,6 @@
     }
   },
   components: {
-//    test: test,
   }
 }
 </script>
