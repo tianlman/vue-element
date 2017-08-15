@@ -9,14 +9,14 @@ import Vuex from 'vuex'
 // import axios from 'axios'
 import VueResource from 'vue-resource'
 import store from './vuex/store'
-import header from './components/header.vue'
+import top from './components/channels/top.vue'
 Vue.use(VueResource)
 Vue.use(Vuex)
 Vue.use(Element)
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
-Vue.component("my-header",header);
+Vue.component("my-top",top);
 
 new Vue({
   el: '#app',

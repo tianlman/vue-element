@@ -1,9 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
-import index from "@/views/index";
-// import test from "@/components/test";
-// import manpower from "@/components/manpower";
-import login from "@/views/login";
+Vue.use(Router);
+const index = r => require.ensure([], () => r(require('@/views/index')), 'index');
+const login = r => require.ensure([], () => r(require('@/views/login')), 'login');
 const manage = r => require.ensure([], () => r(require('@/components/manage')), 'manage');
 const manpower = r => require.ensure([], () => r(require('@/components/manpower')), 'manpower');
 const finance = r => require.ensure([], () => r(require('@/components/finance')), 'finance');
@@ -11,7 +10,7 @@ const statement = r => require.ensure([], () => r(require('@/components/statemen
 const synergy = r => require.ensure([], () => r(require('@/components/synergy')), 'synergy');
 const maintenance = r => require.ensure([], () => r(require('@/components/maintenance')), 'maintenance');
 const m_1 = r => require.ensure([], () => r(require('@/components/manage_c/m_1')), 'm_1');
-Vue.use(Router);
+
 const routes= [
   {
     path: "/login",
@@ -24,34 +23,41 @@ const routes= [
     component: index,
     children:[
       {
-        path: "manage",
+        path: "/:route",
         name: "manage",
         component: manage,
+        meta:"进销存储管理"
       },{
-        path: "manage/:a",
+        path: "manage/:id",
         name: "manage",
         component: m_1,
-      },{
-        path: "manpower",
-        name: "manpower",
-        component: manpower
-      },{
-        path: "finance",
-        name: "finance",
-        component: finance
-      },{
-        path: "statement",
-        name: "statement",
-        component: statement
-      },{
-        path: "synergy",
-        name: "synergy",
-        component: synergy
-      },{
-        path: "maintenance",
-        name: "maintenance",
-        component: maintenance
       }
+      // {
+      //   path: "/:id",
+      //   name: "manpower",
+      //   component: manage,
+      //   meta:"人力资源"
+      // },{
+      //   path: "/:id",
+      //   name: "finance",
+      //   component: manage,
+      //   meta:"财务管理"
+      // },{
+      //   path: "/:id",
+      //   name: "statement",
+      //   component: manage,
+      //   meta:"报表中心"
+      // },{
+      //   path: "/:id",
+      //   name: "synergy",
+      //   component: manage,
+      //   meta:"协同办公"
+      // },{
+      //   path: "/:id",
+      //   name: "maintenance",
+      //   component: manage,
+      //   meta:"系统维护"
+      // }
     ]
   }];
 

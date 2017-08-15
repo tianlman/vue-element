@@ -9,37 +9,22 @@ export default {
   name: 'app',
   data() {
     return {
-      isCollapse: false
+//      isCollapse: false
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    }
+//    handleOpen(key, keyPath) {
+//      console.log(key, keyPath);
+//    },
+//    handleClose(key, keyPath) {
+//      console.log(key, keyPath);
+//    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style lang="scss">
 
-.rightAera {
-  float: left;
-  text-align: center;
-}
+  @import './style/common';
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  float: left;
-  width: 200px;
-  min-height: 400px;
-}
 </style>

@@ -8,7 +8,8 @@ Vue.use(Vuex)
 // 定义了应用状态的数据结构，同样可以在这里设置默认的初始状态
 const state = {
   name: "数据",
-  test:""
+  test:"",
+  newslist:[]
 }
 // 调用 mutations 是唯一允许更新应用状态的地方。
 const mutations = {

@@ -1,9 +1,9 @@
 <template>
   <div style="min-width: 800px;">
     <el-row style="height: 100%;" >
-      <my-header></my-header>
-      <el-col :span="4"  style="min-height: 100%; background-color: #324057;">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" theme="dark" router>
+      <my-top></my-top>
+      <el-col :span="4"">
+        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"  router>
           <el-menu-item index="/manage" >
             <!--<i class="el-icon-menu"></i>-->
             <span slot="title">进销存储管理</span>
@@ -31,6 +31,12 @@
         </el-menu>
       </el-col>
       <el-col :span="20" style="height: 100%;overflow: auto;">
+        <el-breadcrumb separator="/">
+          <el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item>{{getTitle}}</el-breadcrumb-item>
+          <el-breadcrumb-item>{{getSubTitle}}</el-breadcrumb-item>
+          <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
+        </el-breadcrumb>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -40,12 +46,44 @@
 </template>
 
 <script>
+  import { mapState,mapActions,mapGetters } from 'vuex'
   export default {
     name: 'index',
     data() {
       return {
-        isCollapse: false
+        isCollapse: false,
+        title:'',
+        subtitle:'',
       };
+    },
+    computed: {
+      getTitle(){
+        console.log(this.$route.params)
+        var list= this.$store.state.newslist ;
+//          console.log(list);
+        if(this.$route.params.route){
+          for(var i=0;i<list.length;i++){
+//              console.log(list[i])
+            if(this.$route.params.route== list[i]['routeName']){
+              return this.title = list[i]['name'];
+            }
+          }
+        }else {
+          console.log(this.$route.path)
+          var path = this.$route.path;
+          var arrPath = path.split('/');
+          for(var i=0;i<list.length;i++){
+              console.log(arrPath)
+            if(arrPath[1]== list[i]['routeName']){
+              return this.title = list[i]['name'];
+            }
+          }
+        }
+      },
+      getSubTitle(){
+        return this.subtitle = this.$route.params.id;
+      }
+
     },
     methods: {
       handleOpen(key, keyPath) {
@@ -53,7 +91,25 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      getData(){
+//        var params = this.$route.params.id;
+//        console.log(params)
+
+        this.$http.get('http://192.168.1.165:3000/indexData/').then(function(res){
+//          console.log(res.data);
+//          this.$store.state.newslist = res.data.list;
+//          this.title = res.data.list[0].name
+//          this.list = res.data;
+        },function(){
+          alert('请求失败处理'); //失败处理
+        });
       }
+    },
+    created: function () {
+      // `this` 指向 vm 实例
+//      console.log(this.$route.params)
+//      this.getData()
     }
   }
 </script>
@@ -74,7 +130,7 @@
 
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     float: left;
-    width: 200px;
+    width: 100%;
     min-height: 400px;
   }
 </style>
