@@ -31,8 +31,8 @@
         </el-menu>
       </el-col>
       <el-col :span="20" style="height: 100%;overflow: auto;">
-        <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>
+        <el-breadcrumb separator="">
+          <!--<el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>-->
           <el-breadcrumb-item>{{getTitle}}</el-breadcrumb-item>
           <el-breadcrumb-item>{{getSubTitle}}</el-breadcrumb-item>
           <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
@@ -58,7 +58,7 @@
     },
     computed: {
       getTitle(){
-        console.log(this.$route.params)
+//        console.log(this.$route.params)
         var list= this.$store.state.newslist ;
 //          console.log(list);
         if(this.$route.params.route){
@@ -69,11 +69,11 @@
             }
           }
         }else {
-          console.log(this.$route.path)
+//          console.log(this.$route.path)
           var path = this.$route.path;
           var arrPath = path.split('/');
           for(var i=0;i<list.length;i++){
-              console.log(arrPath)
+//              console.log(arrPath)
             if(arrPath[1]== list[i]['routeName']){
               return this.title = list[i]['name'];
             }
@@ -97,8 +97,8 @@
 //        console.log(params)
 
         this.$http.get('http://192.168.1.165:3000/indexData/').then(function(res){
-//          console.log(res.data);
-//          this.$store.state.newslist = res.data.list;
+          console.log(res.data);
+          this.$store.state.newslist = res.data.list;
 //          this.title = res.data.list[0].name
 //          this.list = res.data;
         },function(){
@@ -109,7 +109,7 @@
     created: function () {
       // `this` 指向 vm 实例
 //      console.log(this.$route.params)
-//      this.getData()
+      this.getData()
     }
   }
 </script>
