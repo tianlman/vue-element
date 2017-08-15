@@ -1,20 +1,8 @@
 
 <template>
   <div>
-    <!--manage-->
-    <!--<el-breadcrumb separator="/">-->
-      <!--<el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>-->
-      <!--<el-breadcrumb-item>{{getUrl}}</el-breadcrumb-item>-->
-      <!--&lt;!&ndash;<el-breadcrumb-item>活动列表</el-breadcrumb-item>&ndash;&gt;-->
-      <!--&lt;!&ndash;<el-breadcrumb-item>活动详情</el-breadcrumb-item>&ndash;&gt;-->
-    <!--</el-breadcrumb>-->
-
-    <a href="#/manage/1" >m_1</a>
-    <a href="#/manage/2">m_2</a>
-    <span @click="get">111</span>
-    <ul>
-      <li v-for="item in this.$store.state.newslist">{{item.name}}</li>
-    </ul>
+      <h1></h1>
+      <span v-for="item in this.$store.state.newslist"><router-link to="/manage/1">{{item.name}}</router-link></span>
   </div>
 </template>
 
@@ -32,20 +20,6 @@
       ...mapGetters([
         'getTest'
       ]),
-//      getUrl(){
-//        console.log(this.$route.params.id)
-//          var list= this.$store.state.newslist ;
-////          console.log(list);
-//
-//          for(var i=0;i<list.length;i++){
-////              console.log(list[i])
-//            if(this.$route.params.id == list[i]['routeName']){
-//              return this.title = list[i]['name'];
-//            }
-//        }
-//
-//      }
-
   },
     methods:{
         ...mapActions([
@@ -63,12 +37,13 @@
           });
         },
       getData(){
-        var params = 'invoicing';
-        this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
+        var params = this.$route.params.route;
+        this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
           console.log(res.data);
           this.list = res.data;
-          this.$store.state.newslist = res.data.list;
-          console.log(this.$store.state.newslist)
+          console.log(this.list)
+//          this.$store.state.newslist = res.data.list;
+//          console.log(this.$store.state.newslist)
         },function(){
           alert('请求失败处理'); //失败处理
         });

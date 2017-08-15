@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const state = {
   name: "数据",
   test:"",
-  newslist:[]
+  newslist:[],
 }
 // 调用 mutations 是唯一允许更新应用状态的地方。
 const mutations = {

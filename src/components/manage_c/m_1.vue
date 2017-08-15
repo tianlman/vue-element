@@ -1,5 +1,6 @@
 <template>
   <div >
+
     {{title}}
     <div v-if="title == '1'">
       {{title}}
@@ -16,7 +17,6 @@
     name:"a123",
     data(){
       return{
-
       }
     },
     computed:{
