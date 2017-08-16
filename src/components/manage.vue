@@ -1,8 +1,12 @@
 
 <template>
-  <div>
-      <h1></h1>
-      <span v-for="item in this.$store.state.newslist"><router-link to="/manage/1">{{item.name}}</router-link></span>
+  <div style="padding-left: 20px;">
+    <div v-for="lists in list" style="margin: 10px 0">
+      <h4 style="text-align: left">{{lists.name}}</h4>
+      <div style="display: flex;flex-wrap: wrap">
+        <span v-for="item in lists.list" style="width: 150px;margin-top: 5px;"><router-link :to="{path: '/manage', query: { id: item.routeId }}">{{item.name + routeId + item.routeId}}</router-link:></span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,7 +17,8 @@
       return {
         test:"",
         title:"123",
-        list:[]
+        list:[],
+        routeId:""
       }
     },
     computed: {
@@ -28,35 +33,49 @@
         setText2(){
           this.$store.state.test = this.test;
       },
-        get:function(){
-          //发送get请求
-          this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
-              console.log(res)
+      getData(){
+        var params = this.$route.params.route;
+        this.routeId = params;
+        console.log(this.$store.state.routeDate[params]);
+        if(!this.$store.state.routeDate[params]){
+          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
+            //          console.log(res.data);
+            this.list = res.data;
+            //          console.log(this.list[0].name)
+            //先保存到vuex
+            this.$store.state.routeDate[params] = this.list;
+            //          console.log(this.$store.state.newslist)
+            //          console.log(this.$store.state.routeDate)
           },function(){
             alert('请求失败处理'); //失败处理
           });
-        },
-      getData(){
-        var params = this.$route.params.route;
-        this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
-          console.log(res.data);
-          this.list = res.data;
-          console.log(this.list)
-//          this.$store.state.newslist = res.data.list;
-//          console.log(this.$store.state.newslist)
-        },function(){
-          alert('请求失败处理'); //失败处理
-        });
+        }else{
+          this.list = this.$store.state.routeDate[params];
+//            this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
+//  //          console.log(res.data);
+//              this.list = res.data;
+//  //          console.log(this.list[0].name)
+//              this.$store.state.routeDate[params] = this.list;
+//  //          console.log(this.$store.state.newslist)
+//  //          console.log(this.$store.state.routeDate)
+//            },function(){
+//              alert('请求失败处理'); //失败处理
+//            });
+        }
       },
-
     },
     components: {
 
     },
     created(){
         this.getData();
-        console.log()
-    }
+//        console.log(this.$store.state.routeDate)
+    },
+
+    watch: {
+      //监听路由改变刷新数据
+      '$route':"getData"
+      }
 
   }
 </script>
