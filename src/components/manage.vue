@@ -4,7 +4,8 @@
     <div v-for="lists in list" style="margin: 10px 0">
       <h4 style="text-align: left">{{lists.name}}</h4>
       <div style="display: flex;flex-wrap: wrap">
-        <span v-for="item in lists.list" style="width: 150px;margin-top: 5px;"><router-link :to="{path: '/manage', query: { id: item.routeId }}">{{item.name + routeId + item.routeId}}</router-link:></span>
+        <span v-for="item in lists.list" style="width: 150px;margin-top: 5px;"><router-link :to="routeId+'/'+item.routeId">{{item.name}}</router-link></span>
+        <!--<span v-for="item in lists.list" style="width: 150px;margin-top: 5px;"><a :href="'#'+routeId+'/'+item.routeId">{{item.name + routeId + item.routeId}}</a></span>-->
       </div>
     </div>
   </div>
@@ -50,17 +51,8 @@
             alert('请求失败处理'); //失败处理
           });
         }else{
+//            复制给list
           this.list = this.$store.state.routeDate[params];
-//            this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
-//  //          console.log(res.data);
-//              this.list = res.data;
-//  //          console.log(this.list[0].name)
-//              this.$store.state.routeDate[params] = this.list;
-//  //          console.log(this.$store.state.newslist)
-//  //          console.log(this.$store.state.routeDate)
-//            },function(){
-//              alert('请求失败处理'); //失败处理
-//            });
         }
       },
     },
@@ -69,7 +61,6 @@
     },
     created(){
         this.getData();
-//        console.log(this.$store.state.routeDate)
     },
 
     watch: {

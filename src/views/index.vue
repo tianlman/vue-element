@@ -2,7 +2,7 @@
   <div style="min-width: 800px;">
     <el-row style="height: 100%;" >
       <my-top></my-top>
-      <el-col :span="4"">
+      <el-col :span="4">
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"  router>
           <el-menu-item index="/manage" >
             <!--<i class="el-icon-menu"></i>-->
@@ -35,7 +35,6 @@
           <!--<el-breadcrumb-item :to="{ path: '/manage' }">首页</el-breadcrumb-item>-->
           <el-breadcrumb-item>{{getTitle}}</el-breadcrumb-item>
           <el-breadcrumb-item>{{getSubTitle}}</el-breadcrumb-item>
-          <!--<el-breadcrumb-item>活动详情</el-breadcrumb-item>-->
         </el-breadcrumb>
         <keep-alive>
           <router-view></router-view>
@@ -94,20 +93,14 @@
       },
       getData(){
 //        var params = this.$route.params.id;
-//        console.log(params)
         this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
-//          console.log(res.data);
           this.$store.state.newslist = res.data.list;
-//          this.title = res.data.list[0].name
-//          this.list = res.data;
         },function(){
           alert('请求失败处理'); //失败处理
         });
       },
     },
     created: function () {
-      // `this` 指向 vm 实例
-//      console.log(this.$route.params)
       this.getData()
     }
   }
