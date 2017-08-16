@@ -7,10 +7,14 @@ import Element from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import Vuex from 'vuex'
 // import axios from 'axios'
-import VueResource from 'vue-resource'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
+// import VueResource from 'vue-resource'
 import store from './vuex/store'
 import top from './components/channels/top.vue'
-Vue.use(VueResource)
+// Vue.use(axios)
 Vue.use(Vuex)
 Vue.use(Element)
 

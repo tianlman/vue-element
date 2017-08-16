@@ -1,6 +1,6 @@
 <template>
   <div style="min-width: 800px;">
-    {{this.$store.getters.getCarname}}
+    <input type="text" @keyup="setCarname" value="" v-model="maval">{{this.$store.getters.getCarname}}
     <el-row style="height: 100%;" >
       <my-top></my-top>
       <el-col :span="4">
@@ -54,6 +54,7 @@
         isCollapse: false,
         title:'',
         subtitle:'',
+        maval:''
       };
     },
     computed: {
@@ -64,8 +65,8 @@
       getTitle(){
 //        console.log(this.$route.params)
         var list= this.$store.state.newslist ;
-//          console.log(list);
-        console.log(this.$store.state.newslist)
+          console.log(list);
+//        console.log(this.$store.state.newslist)
         if(this.$route.params.route){
           for(var i=0;i<list.length;i++){
 //              console.log(list[i])
@@ -94,28 +95,39 @@
       ...mapActions ([
         'b' // 映射 this.increment() 为 this.$store.commit('increment')
       ]),
+      ...mapMutations ([
+        'b' // 映射 this.increment() 为 this.$store.commit('increment')
+      ]),
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       },
+      setCarname(){
+        this.$store.dispatch('b',this.maval)
+      },
       getData(){
 //        var params = this.$route.params.id;
-        this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
+//        var _self = this;
+        this.axios.get("http://192.168.1.165:3000/indexData")
+//        this.$http.get('http://192.168.1.165:3000/indexData')
+          .then(res=>{
             //存vuex
-          this.$store.state.newslist = res.data.list;
+            console.log(res.data.list)
+            console.log(this)
+//          this.$store.state.newslist = res.data.list;
         },function(){
           alert('请求失败处理'); //失败处理
         });
       },
     },
     created: function () {
+
 //      this.b("你好");
-      this.$store.dispatch('b',"日了")
       console.log(this.$store.getters);
 //      console.log(this.b);
-//      this.getData()
+      this.getData()
     }
   }
 </script>

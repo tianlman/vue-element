@@ -42,7 +42,7 @@
         this.routeId = params;
 
         if(!this.$store.state.routeDate[params]){
-          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
+          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(res=>{
             this.list = res.data;
             //先保存到vuex
             this.$store.state.routeDate[params] = this.list;
