@@ -37,7 +37,7 @@
       getData(){
         var params = this.$route.params.route;
         this.routeId = params;
-        console.log(this.$store.state.routeDate[params]);
+//        console.log(this.$store.state.routeDate[params]);
         if(!this.$store.state.routeDate[params]){
           this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
             //          console.log(res.data);

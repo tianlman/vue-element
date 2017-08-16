@@ -8,7 +8,7 @@ Vue.use(Vuex)
 // 定义了应用状态的数据结构，同样可以在这里设置默认的初始状态
 const state = {
   name: "数据",
-  test:"",
+  test:"test",
   newslist:[],
   Matelist:[],
   routeDate:{}
