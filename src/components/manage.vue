@@ -26,6 +26,9 @@
       ...mapGetters([
         'getTest'
       ]),
+      getmsg(){
+
+      }
   },
     methods:{
         ...mapActions([
@@ -37,16 +40,12 @@
       getData(){
         var params = this.$route.params.route;
         this.routeId = params;
-//        console.log(this.$store.state.routeDate[params]);
+
         if(!this.$store.state.routeDate[params]){
-          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(function(res){
-            //          console.log(res.data);
+          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(res=>{
             this.list = res.data;
-            //          console.log(this.list[0].name)
             //先保存到vuex
             this.$store.state.routeDate[params] = this.list;
-            //          console.log(this.$store.state.newslist)
-            //          console.log(this.$store.state.routeDate)
           },function(){
             alert('请求失败处理'); //失败处理
           });
