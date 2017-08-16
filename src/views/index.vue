@@ -47,6 +47,7 @@
 
 <script>
   import { mapState,mapActions,mapGetters,mapMutations  } from 'vuex'
+  import { getindexData  } from '@/api/getData'
   export default {
     name: 'index',
     data() {
@@ -111,9 +112,9 @@
     created: function () {
 //      this.b("你好");
       this.$store.dispatch('b',"日了")
-      console.log(this.$store.getters);
-//      console.log(this.b);
-//      this.getData()
+      console.log(getindexData())
+//      console.log(this.$store.getters);
+      this.getData( )
     }
   }
 </script>
