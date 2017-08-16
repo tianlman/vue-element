@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import cart from './modules/cart'
+import _threeLevel from './modules/module_threeLevel'
 Vue.use(Vuex)
 
 //状态，也就是保存数据的地方
 // 定义了应用状态的数据结构，同样可以在这里设置默认的初始状态
 const state = {
   name: "数据",
-  test:"",
+  test:"test",
   newslist:[],
   Matelist:[],
   routeDate:{}
@@ -39,6 +39,6 @@ export default new Vuex.Store({
   actions,
   getters,
   modules:{
-    cart,
+    _threeLevel
   }
 })

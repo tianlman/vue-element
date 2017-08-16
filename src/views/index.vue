@@ -1,5 +1,6 @@
 <template>
   <div style="min-width: 800px;">
+    {{this.$store.getters.getCarname}}
     <el-row style="height: 100%;" >
       <my-top></my-top>
       <el-col :span="4">
@@ -45,7 +46,7 @@
 </template>
 
 <script>
-  import { mapState,mapActions,mapGetters } from 'vuex'
+  import { mapState,mapActions,mapGetters,mapMutations  } from 'vuex'
   export default {
     name: 'index',
     data() {
@@ -56,6 +57,10 @@
       };
     },
     computed: {
+      ...mapGetters([
+        'getTest',
+        'getCarname'
+      ]),
       getTitle(){
 //        console.log(this.$route.params)
         var list= this.$store.state.newslist ;
@@ -86,6 +91,9 @@
 
     },
     methods: {
+      ...mapActions ([
+        'b' // 映射 this.increment() 为 this.$store.commit('increment')
+      ]),
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -103,7 +111,11 @@
       },
     },
     created: function () {
-      this.getData()
+//      this.b("你好");
+      this.$store.dispatch('b',"日了")
+      console.log(this.$store.getters);
+//      console.log(this.b);
+//      this.getData()
     }
   }
 </script>

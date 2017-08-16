@@ -1,5 +1,6 @@
 <template>
   <div >
+
     {{title}}
     <div v-if="title == '1'">
       {{title}}
@@ -16,7 +17,6 @@
     name:"a123",
     data(){
       return{
-
       }
     },
     computed:{
@@ -37,7 +37,9 @@
     created: function(){
       // `this` 指向 vm 实例
       console.log(this.$route.params)
+      console.log(this.$store.state)
 //      vm.getData()
     }
   }
 </script>
+
