@@ -2,7 +2,7 @@
   <div style="min-width: 800px;">
     <el-row style="height: 100%;" >
       <my-top></my-top>
-      <el-col :span="4"">
+      <el-col :span="4">
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"  router>
           <el-menu-item index="/manage" >
             <!--<i class="el-icon-menu"></i>-->
@@ -107,7 +107,7 @@
     },
     created: function () {
       // `this` 指向 vm 实例
-//      console.log(this.$route.params)
+      console.log(this.$store.state._threeLevel)
       this.getData()
     }
   }

@@ -37,6 +37,7 @@
     created: function(){
       // `this` 指向 vm 实例
       console.log(this.$route.params)
+      console.log(this.$store.state)
 //      vm.getData()
     }
   }
