@@ -95,16 +95,15 @@
       getData(){
 //        var params = this.$route.params.id;
 //        console.log(params)
-
-        this.$http.get('http://192.168.1.165:3000/indexData/').then(function(res){
-          console.log(res.data);
+        this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
+//          console.log(res.data);
           this.$store.state.newslist = res.data.list;
 //          this.title = res.data.list[0].name
 //          this.list = res.data;
         },function(){
           alert('请求失败处理'); //失败处理
         });
-      }
+      },
     },
     created: function () {
       // `this` 指向 vm 实例
