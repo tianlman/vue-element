@@ -60,6 +60,7 @@
 //        console.log(this.$route.params)
         var list= this.$store.state.newslist ;
 //          console.log(list);
+        console.log(this.$store.state.newslist)
         if(this.$route.params.route){
           for(var i=0;i<list.length;i++){
 //              console.log(list[i])
@@ -94,6 +95,7 @@
       getData(){
 //        var params = this.$route.params.id;
         this.$http.get('http://192.168.1.165:3000/indexData').then(function(res){
+            //存vuex
           this.$store.state.newslist = res.data.list;
         },function(){
           alert('请求失败处理'); //失败处理
