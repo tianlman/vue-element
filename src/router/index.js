@@ -10,7 +10,6 @@ const routes= [
     path: "/login",
     name: "login",
     component: login,
-
   },{
     name: "index",
     path: "/",
@@ -22,7 +21,7 @@ const routes= [
         component: manage,
         meta:"进销存储管理"
       },{
-        path: "manage/:id",
+        path: "*/:id",
         name: "manage",
         component: m_1,
       }
