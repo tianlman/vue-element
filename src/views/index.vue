@@ -47,6 +47,7 @@
 
 <script>
   import { mapState,mapActions,mapGetters,mapMutations  } from 'vuex'
+  import {getindexData} from '@/api/getData'
   export default {
     name: 'index',
     data() {
@@ -63,23 +64,18 @@
         'getCarname'
       ]),
       getTitle(){
-//        console.log(this.$route.params)
         var list= this.$store.state.newslist ;
-          console.log(list);
-//        console.log(this.$store.state.newslist)
+
         if(this.$route.params.route){
           for(var i=0;i<list.length;i++){
-//              console.log(list[i])
             if(this.$route.params.route== list[i]['routeName']){
               return this.title = list[i]['name'];
             }
           }
         }else {
-//          console.log(this.$route.path)
           var path = this.$route.path;
           var arrPath = path.split('/');
           for(var i=0;i<list.length;i++){
-//              console.log(arrPath)
             if(arrPath[1]== list[i]['routeName']){
               return this.title = list[i]['name'];
             }
@@ -108,21 +104,18 @@
         this.$store.dispatch('b',this.maval)
       },
       getData(){
-//        var params = this.$route.params.id;
+
         this.axios.get("http://192.168.1.165:3000/indexData")
 //        this.$http.get('http://192.168.1.165:3000/indexData')
           .then(function(res){
             //存vuex
-            console.log(res.data.list)
-          this.$store.state.newslist = res.data.list;
-        }.bind(this));
       },
     },
     created: function () {
-//      this.b("你好");
-      console.log(this.$store.getters);
-//      console.log(this.b);
       this.getData()
+      getindexData().then( (res)=> {
+        console.log(res)
+      })
     }
   }
 </script>
