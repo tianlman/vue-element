@@ -6,7 +6,6 @@ import router from './router'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import Vuex from 'vuex'
-// import axios from 'axios'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -25,7 +24,6 @@ Vue.component("my-top",top);
 new Vue({
   el: '#app',
   router,
-  // axios,
   store: store,
   template: '<App/>',
   components: { App }

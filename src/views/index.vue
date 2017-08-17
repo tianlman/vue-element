@@ -109,21 +109,16 @@
       },
       getData(){
 //        var params = this.$route.params.id;
-//        var _self = this;
         this.axios.get("http://192.168.1.165:3000/indexData")
 //        this.$http.get('http://192.168.1.165:3000/indexData')
-          .then(res=>{
+          .then(function(res){
             //存vuex
             console.log(res.data.list)
-            console.log(this)
-//          this.$store.state.newslist = res.data.list;
-        },function(){
-          alert('请求失败处理'); //失败处理
-        });
+          this.$store.state.newslist = res.data.list;
+        }.bind(this));
       },
     },
     created: function () {
-
 //      this.b("你好");
       console.log(this.$store.getters);
 //      console.log(this.b);
