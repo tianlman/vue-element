@@ -27,21 +27,11 @@
       ...mapGetters([
         'getTest'
       ]),
-      getmsg(){
-
-      }
   },
     methods:{
-        ...mapActions([
-            'a'
-      ]),
-        setText2(){
-          this.$store.state.test = this.test;
-      },
       getData(){
         var params = this.$route.params.route;
         this.routeId = params;
-
         if(!this.$store.state.routeDate[params]){
           getrouteData(params).then(res=>{
             this.list = res.data;
@@ -52,13 +42,6 @@
               alert('请求失败处理'); //失败处理
             }
           );
-//          this.$http.get('http://192.168.1.165:3000/indexData/'+params).then(res=>{
-//            this.list = res.data;
-//            //先保存到vuex
-//            this.$store.state.routeDate[params] = this.list;
-//          },function(){
-//            alert('请求失败处理'); //失败处理
-//          });
         }else{
 //            复制给list
           this.list = this.$store.state.routeDate[params];

@@ -1,11 +1,11 @@
 <template>
   <div style="min-width: 800px;">
-    <input type="text" @keyup="setCarname" value="" v-model="maval">{{this.$store.getters.getCarname}}
-    <el-row style="height: 100%;" >
+    <el-row style="height: 100%;">
       <my-top></my-top>
       <el-col :span="4">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"  router>
-          <el-menu-item index="/manage" >
+        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                 :collapse="isCollapse" router>
+          <el-menu-item index="/manage">
             <!--<i class="el-icon-menu"></i>-->
             <span slot="title">进销存储管理</span>
           </el-menu-item>
@@ -46,37 +46,35 @@
 </template>
 
 <script>
-  import { mapState,mapActions,mapGetters,mapMutations  } from 'vuex'
+  import {mapState, mapActions, mapGetters, mapMutations} from 'vuex'
   import {getindexData} from '@/api/getData'
   export default {
     name: 'index',
     data() {
       return {
         isCollapse: false,
-        title:'',
-        subtitle:'',
-        maval:''
+        title: '',
+        subtitle: '',
       };
     },
     computed: {
       ...mapGetters([
         'getTest',
-        'getCarname'
       ]),
       getTitle(){
-        var list= this.$store.state.newslist ;
+        var list = this.$store.state.newslist;
 
-        if(this.$route.params.route){
-          for(var i=0;i<list.length;i++){
-            if(this.$route.params.route== list[i]['routeName']){
+        if (this.$route.params.route) {
+          for (var i = 0; i < list.length; i++) {
+            if (this.$route.params.route == list[i]['routeName']) {
               return this.title = list[i]['name'];
             }
           }
-        }else {
+        } else {
           var path = this.$route.path;
           var arrPath = path.split('/');
-          for(var i=0;i<list.length;i++){
-            if(arrPath[1]== list[i]['routeName']){
+          for (var i = 0; i < list.length; i++) {
+            if (arrPath[1] == list[i]['routeName']) {
               return this.title = list[i]['name'];
             }
           }
@@ -88,34 +86,23 @@
 
     },
     methods: {
-      ...mapActions ([
-        'b' // 映射 this.increment() 为 this.$store.commit('increment')
-      ]),
-      ...mapMutations ([
-        'b' // 映射 this.increment() 为 this.$store.commit('increment')
-      ]),
       handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       },
-      setCarname(){
-        this.$store.dispatch('b',this.maval)
-      },
       getData(){
-
-        this.axios.get("http://192.168.1.165:3000/indexData")
-//        this.$http.get('http://192.168.1.165:3000/indexData')
-          .then(function(res){
-            //存vuex
+        getindexData().then((res) => {
+          this.$store.state.newslist = res.data.list;
+        }).catch(err => {
+            alert('请求失败处理'); //失败处理
+          }
+        )
       },
     },
     created: function () {
       this.getData()
-      getindexData().then( (res)=> {
-        console.log(res)
-      })
     }
   }
 </script>
